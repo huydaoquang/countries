@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+import SwitchMode from "./SwitchMode copy";
+
 const Header = (props) => {
   return (
     <HeaderPane>
       <span>Where in the word</span>
-      <button>Toggle Theme</button>
+      <SwitchMode />
     </HeaderPane>
   );
 };
