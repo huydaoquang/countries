@@ -7,11 +7,11 @@
   justify-content: space-between;
   padding: 2px 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  background-color: hsl(208, 59%, 41%);
+  background-color: var(--ToggleButtonBackground);
 }
 
 .Icon {
-  color: hsl(51, 96%, 61%);
+  color: var(--IconSwitchColor);
   font-size: 20px;
   margin-top: 6px;
   transition: all 0.2s ease;

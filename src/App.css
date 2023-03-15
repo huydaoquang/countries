@@ -8,3 +8,8 @@
 html {
   font-family: "Nunito", sans-serif;
 }
+
+:root {
+  --IconSwitchColor: hsl(51, 96%, 61%);
+  --ToggleButtonBackground: hsl(208, 59%, 41%);
+}
