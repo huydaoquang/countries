@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import styled from "styled-components";
 
-import SwitchMode from "./SwitchMode copy";
+import SwitchMode from "./SwitchMode";
+import { ThemeContext } from "../ThemeContext/themeContext";
 
 const Header = (props) => {
+  const themeContext = useContext(ThemeContext);
+
   return (
-    <HeaderPane>
+    <HeaderPane className={themeContext.theme}>
       <span>Where in the word</span>
       <SwitchMode />
     </HeaderPane>
