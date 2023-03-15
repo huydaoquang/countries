@@ -28,7 +28,7 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   overflow: hidden;
 `;
