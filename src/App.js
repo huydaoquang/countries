@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 
 import "./App.css";
@@ -8,12 +9,18 @@ import { ThemeContext } from "./Components/ThemeContext/themeContext";
 
 function App() {
   const themeContext = useContext(ThemeContext);
+
   return (
     <AppContainer className={themeContext.theme}>
-      <Header />
-      <ContentContainer>
-        <MainContent />
-      </ContentContainer>
+      <Router>
+        <Header />
+        <ContentContainer>
+          <Routes>
+            <Route exact path="/" element={<MainContent />} />
+            <Route path="/region/:regionName" element={<MainContent />} />
+          </Routes>
+        </ContentContainer>
+      </Router>
     </AppContainer>
   );
 }
