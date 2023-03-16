@@ -5,6 +5,7 @@ import ScrollBar from "react-perfect-scrollbar";
 import Country from "./Country";
 import {
   getCountries,
+  getCountriesByName,
   getCountriesByRegion,
 } from "../../Store/Actions/countriesActions";
 import { useEffect } from "react";
@@ -15,10 +16,13 @@ const Countries = () => {
   const countries = useSelector((state) => state.Countries.countries);
   const slug = useParams();
 
+  console.log(slug.name);
+
   useEffect(() => {
     if (slug.regionName) dispatch(getCountriesByRegion(slug.regionName));
+    else if (slug.name) dispatch(getCountriesByName(slug.name));
     else dispatch(getCountries());
-  }, [dispatch, slug.regionName]);
+  }, [dispatch, slug.regionName, slug.name]);
 
   return (
     <ScrollBar style={{ maxHeight: "70vh", overflow: "hidden" }}>

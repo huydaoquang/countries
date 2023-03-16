@@ -20,6 +20,7 @@ function App() {
             <Route exact path="/" element={<MainContent />} />
             <Route path="/region/:regionName" element={<MainContent />} />
             <Route path="/country/:countryName" element={<CountryDetail />} />
+            <Route path="/search/:name" element={<MainContent />} />
           </Routes>
         </ContentContainer>
       </Router>
