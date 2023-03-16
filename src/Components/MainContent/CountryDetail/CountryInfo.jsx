@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import clsx from "clsx";
+import axios from "axios";
 
 import styles from "./CountryInfo.module.scss";
 import { ThemeContext } from "../../ThemeContext/themeContext";
-import { useSelector } from "react-redux";
 
 const getLanguages = (country) => {
   let result = "";
@@ -14,9 +16,30 @@ const getLanguages = (country) => {
   return result;
 };
 
+const getCountryNameByCode = async (code) => {
+  const result = await axios.get(
+    `https://restcountries.com/v2/alpha?codes=${code}`
+  );
+  return result.data;
+};
+
 const CountryInfo = (props) => {
   const themContext = useContext(ThemeContext);
   const country = useSelector((state) => state.Countries.country);
+  const [countriesBorder, setCountriesBorder] = useState([]);
+
+  useEffect(() => {
+    if (country && country.borders) {
+      getCountryNameByCode(country.borders)
+        .then((res) => {
+          const countryName = res.map((country) => country.name);
+          setCountriesBorder(countryName);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [country]);
+
+  console.log(countriesBorder);
 
   return (
     <div className={styles.countryInfo}>
@@ -88,12 +111,16 @@ const CountryInfo = (props) => {
                 <td className={styles.countryInfo__title}>Border Countries</td>
                 <td>:</td>
                 <td className={styles.borderList}>
-                  <span className={clsx(styles.borderItem, themContext.theme)}>
-                    China
-                  </span>
-                  <span className={clsx(styles.borderItem, themContext.theme)}>
-                    India
-                  </span>
+                  {countriesBorder.length > 0 &&
+                    countriesBorder.map((country) => (
+                      <Link to={`/country/${country}`} key={country}>
+                        <span
+                          className={clsx(styles.borderItem, themContext.theme)}
+                        >
+                          {country}
+                        </span>
+                      </Link>
+                    ))}
                 </td>
               </tr>
             </tbody>

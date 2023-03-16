@@ -10,7 +10,7 @@ import { getCountryByName } from "../../Store/Actions/countriesActions";
 const CountryDetail = (props) => {
   const themContext = useContext(ThemeContext);
   const slug = useParams();
-  const navgate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const country = useSelector((state) => state.Countries.country);
 
@@ -21,7 +21,7 @@ const CountryDetail = (props) => {
   return (
     <Wrapper>
       <div
-        onClick={() => navgate(-1)}
+        onClick={() => navigate(-1)}
         className={`goBack-btn ${themContext.theme}`}
       >
         Go back
