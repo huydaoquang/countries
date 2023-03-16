@@ -27,3 +27,19 @@ export const getCountryByName = (name) => async (dispatch) => {
     })
     .catch((error) => console.log("get country by name api error", error));
 };
+
+export const getCountriesByRegion = (regionName) => async (dispatch) => {
+  await axios
+    .get(`${countriesApi}/region/${regionName}`)
+    .then((res) => {
+      const countries = res.data.map((country) => ({
+        name: country.name,
+        capital: country.capital,
+        region: country.region,
+        population: new Intl.NumberFormat().format(country.population),
+        flag: country.flag,
+      }));
+      dispatch({ type: Types.GET_COUNTRIES_BY_REGION, payload: countries });
+    })
+    .catch((err) => console.log("get country by region api error", err));
+};

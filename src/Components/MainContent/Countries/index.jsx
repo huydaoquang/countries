@@ -3,16 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import ScrollBar from "react-perfect-scrollbar";
 
 import Country from "./Country";
-import { getCountries } from "../../Store/Actions/countriesActions";
+import {
+  getCountries,
+  getCountriesByRegion,
+} from "../../Store/Actions/countriesActions";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const Countries = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.Countries.countries);
+  const slug = useParams();
 
   useEffect(() => {
-    dispatch(getCountries());
-  }, [dispatch]);
+    if (slug.regionName) dispatch(getCountriesByRegion(slug.regionName));
+    else dispatch(getCountries());
+  }, [dispatch, slug.regionName]);
 
   return (
     <ScrollBar style={{ maxHeight: "70vh", overflow: "hidden" }}>

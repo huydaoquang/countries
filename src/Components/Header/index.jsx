@@ -3,13 +3,16 @@ import styled from "styled-components";
 
 import SwitchMode from "./SwitchMode";
 import { ThemeContext } from "../ThemeContext/themeContext";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const themeContext = useContext(ThemeContext);
 
   return (
     <HeaderPane className={themeContext.theme}>
-      <span>Where in the word</span>
+      <Link to="/">
+        <span>Where in the word</span>
+      </Link>
       <SwitchMode />
     </HeaderPane>
   );
@@ -27,6 +30,7 @@ const HeaderPane = styled.div`
   z-index: 10;
 
   span {
+    user-select: none;
     font-size: 24px;
     font-weight: bold;
     text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);

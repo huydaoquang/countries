@@ -14,6 +14,9 @@ const CountriesReducer = (state = CountriesReducerInitialState, action) => {
     case Types.GET_COUNTRY_BY_NAME:
       return { ...state, country: payload };
 
+    case Types.GET_COUNTRIES_BY_REGION:
+      return { ...state, countries: payload };
+
     default:
       return state;
   }
