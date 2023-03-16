@@ -28,3 +28,30 @@ td {
 .countryInfo__value {
   font-weight: 400;
 }
+
+.borderList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.borderItem {
+  display: block;
+  width: max-content;
+  text-align: center;
+  user-select: none;
+  transition: all 0.2s ease;
+
+  margin: 8px 12px 8px 0;
+  padding: 4px 8px;
+  opacity: 0.75;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+
+  &:hover {
+    opacity: 1;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
