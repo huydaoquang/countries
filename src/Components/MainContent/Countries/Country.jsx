@@ -3,30 +3,28 @@ import { useContext } from "react";
 
 import { ThemeContext } from "../../ThemeContext/themeContext";
 
-const Country = () => {
+const Country = (props) => {
+  const { country } = props;
   const themContext = useContext(ThemeContext);
 
   return (
     <CountriesCard className={themContext.theme}>
       <div className="flag">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/2560px-Flag_of_Vietnam.svg.png"
-          alt=""
-        />
+        <img src={country.flag} alt="" />
       </div>
       <CountriesInfo>
-        <h3>Afghanistan</h3>
+        <h3>{country.name}</h3>
         <div>
           Population:
-          <span>123,456,768</span>
+          <span> {country.population}</span>
         </div>
         <div>
-          region
-          <span>asia:</span>
+          region:
+          <span> {country.region}</span>
         </div>
         <div>
-          Capital
-          <span> kabul:</span>
+          Capital:
+          <span> {country.capital}</span>
         </div>
       </CountriesInfo>
     </CountriesCard>
@@ -87,6 +85,7 @@ const CountriesInfo = styled.div`
 
     span {
       font-weight: 400;
+      margin-left: 4px;
     }
   }
 `;
