@@ -5,6 +5,7 @@ import styled from "styled-components";
 import "./App.css";
 import Header from "./Components/Header";
 import MainContent from "./Components/MainContent";
+import CountryDetail from "./Components/MainContent/CountryDetail";
 import { ThemeContext } from "./Components/ThemeContext/themeContext";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<MainContent />} />
             <Route path="/region/:regionName" element={<MainContent />} />
+            <Route path="/country/:countryName" element={<CountryDetail />} />
           </Routes>
         </ContentContainer>
       </Router>

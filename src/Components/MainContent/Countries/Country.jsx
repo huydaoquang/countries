@@ -2,32 +2,35 @@ import styled from "styled-components";
 import { useContext } from "react";
 
 import { ThemeContext } from "../../ThemeContext/themeContext";
+import { Link } from "react-router-dom";
 
 const Country = (props) => {
   const { country } = props;
   const themContext = useContext(ThemeContext);
 
   return (
-    <CountriesCard className={themContext.theme}>
-      <div className="flag">
-        <img src={country.flag} alt="" />
-      </div>
-      <CountriesInfo>
-        <h3>{country.name}</h3>
-        <div>
-          Population:
-          <span> {country.population}</span>
+    <Link to={`/country/${country.name}`}>
+      <CountriesCard className={themContext.theme}>
+        <div className="flag">
+          <img src={country.flag} alt="" />
         </div>
-        <div>
-          region:
-          <span> {country.region}</span>
-        </div>
-        <div>
-          Capital:
-          <span> {country.capital}</span>
-        </div>
-      </CountriesInfo>
-    </CountriesCard>
+        <CountriesInfo>
+          <h3>{country.name}</h3>
+          <div>
+            Population:
+            <span> {country.population}</span>
+          </div>
+          <div>
+            region:
+            <span> {country.region}</span>
+          </div>
+          <div>
+            Capital:
+            <span> {country.capital}</span>
+          </div>
+        </CountriesInfo>
+      </CountriesCard>
+    </Link>
   );
 };
 

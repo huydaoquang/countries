@@ -18,3 +18,12 @@ export const getCountries = () => async (dispatch) => {
     })
     .catch((error) => console.log("get countries api error:", error));
 };
+
+export const getCountryByName = (name) => async (dispatch) => {
+  await axios
+    .get(`${countriesApi}/name/${name}`)
+    .then((res) => {
+      dispatch({ type: Types.GET_COUNTRY_BY_NAME, payload: res.data[0] });
+    })
+    .catch((error) => console.log("get country by name api error", error));
+};

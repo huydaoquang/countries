@@ -1,14 +1,31 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { ThemeContext } from "../../ThemeContext/themeContext";
 import CountryInfo from "./CountryInfo";
+import { getCountryByName } from "../../Store/Actions/countriesActions";
 
 const CountryDetail = (props) => {
   const themContext = useContext(ThemeContext);
+  const slug = useParams();
+  const navgate = useNavigate();
+  const dispatch = useDispatch();
+  console.log(slug.countryName);
+
+  useEffect(() => {
+    dispatch(getCountryByName(slug.countryName));
+  }, [slug.countryName]);
+
   return (
     <Wrapper>
-      <div className={`goBack-btn ${themContext.theme}`}>Go back</div>
+      <div
+        onClick={() => navgate(-1)}
+        className={`goBack-btn ${themContext.theme}`}
+      >
+        Go back
+      </div>
       <CountryContainer>
         <div className="flagCountry">
           <img
